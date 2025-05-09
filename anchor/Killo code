@@ -1,0 +1,49 @@
+Python Interface to Read Arduino Data
+
+-----test code 
+
+
+void setup() {
+    Serial.begin(9600);
+}
+
+void loop() {
+    // Simulate energy measurement (random for demo purposes)
+    float energyMeasured = random(100, 500) / 10.0; // e.g., 10.0 to 50.0 units
+    Serial.println(energyMeasured);
+    delay(1000); // Every second
+}
+-------
+
+import serial
+import requests
+import json
+
+# Adjust the COM port to match your Arduino's port
+ser = serial.Serial('COM3', 9600)
+
+def read_energy():
+    while True:
+        line = ser.readline().decode('utf-8').rstrip()
+        energy = float(line)
+        print(f"Measured energy: {energy}")
+
+        # Simulate sending energy data to blockchain
+        send_to_blockchain(energy)
+
+def send_to_blockchain(energy):
+    # Placeholder for blockchain integration
+    url = "http://localhost:8000/submit-energy"
+    payload = {"energy": energy, "nonce": 12345}
+    headers = {'Content-Type': 'application/json'}
+
+    try:
+        response = requests.post(url, json=payload, headers=headers)
+        print("Blockchain Response:", response.json())
+    except Exception as e:
+        print("Error connecting to blockchain:", e)
+
+if __name__ == "__main__":
+    read_energy()
+
+
