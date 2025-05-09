@@ -1,3 +1,7 @@
+## Reference Implementation
+This project references and builds upon the mining logic from [ORE by Regolith Labs](https://github.com/regolith-labs/ore/tree/master/program/src).
+
+We use their advanced hashing and reward distribution logic as a conceptual backbone and starting point. The original ORE implementation is used to guide the development of Killo’s energy-proof verification system.
 # Killo Energy Miner ⚡️
 
 ## Overview
